@@ -1,0 +1,88 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+      "title": "Titple - OpenAPI 3.0",
+      "description": "Api description",
+      "termsOfService": "http://swagger.io/terms/",
+      "contact": {
+        "email": "gciavarr@redhat.com"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      },
+      "version": "0.0.1"
+    },
+    "servers": [
+      {
+        "url": "/"
+      }
+    ],
+    "paths": {
+      "/workflows": {
+        "get": {
+          "summary": "Summary wf",
+          "description": "Returns wf",
+          "operationId": "getWorkflows",
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WorkflowListResult"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid wf"
+            },
+            "404": {
+              "description": "wf not found"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "WorkflowListResult": {
+          "properties": {
+            "items": {
+              "type": "object",
+              "properties": {
+                "uri": {
+                  "type": "string",
+                  "description": "the uri"
+                },
+                "definitions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "https://serverlessworkflow.io/schemas/0.8/workflow.json"
+                  }
+                }
+              }
+            },
+            "limit": {
+              "type": "integer",
+              "default": 0
+            },
+            "offset": {
+              "type": "integer",
+              "default": 0
+            },
+            "totalCount": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        }
+      }
+    }
+  }
+  
